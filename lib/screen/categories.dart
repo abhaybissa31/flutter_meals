@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals/data/categorydata.dart';
 import 'package:meals/screen/appbar.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -15,9 +16,14 @@ class CategoriesScreen extends StatelessWidget {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 1.5,
-            crossAxisSpacing: 25,
-            mainAxisSpacing: 25),
-        children: const [
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 25
+            ),
+        children:  [
+          // const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10)),
+          for(final categoryModel in availableCategories)
+            categoryModel.card 
+            
           // Text("1",style: TextStyle(color: Colors.white),),  fit: BoxFit.fill,
           // ,
           // CardData(imageAddress: "lib/assets/images/cat_italian.jpg",imageText: "Italian",),

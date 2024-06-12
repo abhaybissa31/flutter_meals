@@ -1,7 +1,7 @@
 import 'package:meals/widgets/card.dart';
 class CategoryModel {
-  const CategoryModel({required this.id, required this.card});
-  final String id;
+  const CategoryModel({required this.card});
+ 
   final CardData card;
 
 }

@@ -5,7 +5,7 @@ class AppBarClass extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-          backgroundColor: Colors.transparent, // 1
+          backgroundColor: Colors.black38.withOpacity(0.5), // 1
           elevation: 1, // 2
           title: const Text(
             'Select Your Favorite Cuisine',
