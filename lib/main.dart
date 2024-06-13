@@ -4,11 +4,14 @@ import 'package:meals/screen/categories.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
-  colorScheme: ColorScheme.fromSeed(
+  colorScheme: ColorScheme.fromSwatch(
     brightness: Brightness.dark,
-    seedColor: const Color.fromARGB(255, 0, 0, 0),
+    primarySwatch: Colors.blueGrey, // Maintains a teal accent
   ),
-  textTheme: GoogleFonts.latoTextTheme(),
+  textTheme: GoogleFonts.latoTextTheme(
+   
+  ),
+  scaffoldBackgroundColor: const Color.fromARGB(18, 0, 0, 0), // Sets background to black
 );
 
 void main() {
