@@ -2,12 +2,16 @@ import 'package:meals/models/categorymodel.dart';
 import 'package:meals/models/mealmodel.dart';
 import 'package:meals/widgets/card.dart';
 
-const availableCategories = [
+final availableCategories = [
   CategoryModel(
     card: CardData(
+      // onSelectCategory: context,
       imageAddress: "lib/assets/images/cat_italian.jpg",
       imageText: "Italian",
       id: 'c1',
+      onSelectCategory: () {
+
+      },
     ),
   ),
 
@@ -16,6 +20,8 @@ const availableCategories = [
       imageAddress: "lib/assets/images/cat_indian.jpg",
       imageText: "Indian",
       id: 'c2',
+      onSelectCategory: () {
+      },
     ),
   ),
 
@@ -24,6 +30,8 @@ const availableCategories = [
       imageAddress: "lib/assets/images/cat_hamburger.jpg",
       imageText: "Hamburger",
       id: 'c3',
+      onSelectCategory: () {
+      },
     ),
   ),
 
@@ -33,6 +41,9 @@ const availableCategories = [
       imageAddress: "lib/assets/images/cat_german.jpg",
       imageText: "German",
       id: 'c4',
+      onSelectCategory: () {
+
+      },
     ),
   ),
 
@@ -42,6 +53,9 @@ const availableCategories = [
       imageAddress: "lib/assets/images/cat_light.jpg",
       imageText: "Light and Lovely",
       id: 'c5',
+      onSelectCategory: () {
+
+      },
     ),
   ),
 
@@ -51,6 +65,9 @@ const availableCategories = [
       imageAddress: "lib/assets/images/cat_exotic.jpg",
       imageText: "Exotic",
       id: 'c6',
+      onSelectCategory: () {
+
+      },
     ),
   ),
 
@@ -60,6 +77,9 @@ const availableCategories = [
       imageAddress: "lib/assets/images/cat_breakfast.jpg",
       imageText: "Breakfast",
       id: 'c7',
+      onSelectCategory: () {
+
+      },
     ),
   ),
 
@@ -69,6 +89,9 @@ const availableCategories = [
       imageAddress: "lib/assets/images/cat_quick.jpg",
       imageText: "Quick and Easy",
       id: 'c8',
+      onSelectCategory: () {
+
+      },
     ),
   ),
 
@@ -78,6 +101,9 @@ const availableCategories = [
       imageAddress: "lib/assets/images/cat_french.jpg",
       imageText: "French",
       id: 'c9',
+      onSelectCategory: () {
+
+      },
     ),
   ),
   
@@ -87,6 +113,9 @@ const availableCategories = [
       imageAddress: "lib/assets/images/cat_chinese.jpg",
       imageText: "chinese",
       id: 'c10',
+      onSelectCategory: () {
+
+      },
     ),
   ),
 ];

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CardData extends StatelessWidget {
-  const CardData({
+    const CardData({
     Key? key,
     required this.imageAddress,
     required this.imageText,
     required this.id,
+    required this.onSelectCategory,
   }) : super(key: key);
 
   final String imageAddress;
   final String imageText;
   final String id;
+  final void Function() onSelectCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class CardData extends StatelessWidget {
       padding: const EdgeInsets.only(left: 12, right: 12, top: 15),
       child: InkWell(
         onTap: () {
-          // Define what happens when the card is tapped
+          onSelectCategory();
         },
         splashFactory:InkRipple.splashFactory,
       splashColor: Colors.white38,

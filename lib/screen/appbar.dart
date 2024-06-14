@@ -5,16 +5,16 @@ class AppBarClass extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-          shadowColor: Color.fromARGB(255, 255, 255, 255),
-          backgroundColor: Color.fromARGB(255, 14, 14, 14), // 1
-          elevation: 4, // 2
+          backgroundColor:const Color.fromARGB(255, 0, 0, 0), // 1
+          // elevation: 5, // 2
           title: const Text(
             'Select Your Favorite Cuisine',
             style: TextStyle(
               color: Colors.white,
+              fontSize: 20,
             ),
           ),
-          centerTitle: true,
+        
         );
   }
 }
