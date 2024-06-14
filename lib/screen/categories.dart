@@ -22,7 +22,7 @@ class CategoriesScreen extends StatelessWidget {
         children:  [
           // const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10)),
           for(final categoryModel in availableCategories)
-            categoryModel.card
+            categoryModel.card,
         ],
       ),
     );
