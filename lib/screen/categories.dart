@@ -32,21 +32,23 @@ class CategoriesScreen extends StatelessWidget {
   }
 
   Widget _buildCategoryGrid(BuildContext context) {
-    return GridView.builder(
+    // Create a list of widgets
+    List<Widget> categoryCards = availableCategories.map((category) {
+      return CardData(
+        imageAddress: category.card.imageAddress,
+        imageText: category.card.imageText,
+        id: category.card.id,
+        onSelectCategory: () => _selectCategory(context, category),
+      );
+    }).toList();
+
+    // Return a GridView with the list of widgets
+    return GridView(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 1,
         childAspectRatio: 1.6,
       ),
-      itemCount: availableCategories.length,
-      itemBuilder: (ctx, index) {
-        final category = availableCategories[index];
-        return CardData(
-          imageAddress: category.card.imageAddress,
-          imageText: category.card.imageText,
-          id: category.card.id  ,
-          onSelectCategory: () => _selectCategory(context, category),
-        );
-      },
+      children: categoryCards,
     );
   }
 }
