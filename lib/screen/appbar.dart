@@ -11,6 +11,7 @@ class AppBarClass extends StatelessWidget{
             'Select Your Favorite Cuisine',
             style: TextStyle(
               color: Colors.white,
+              fontWeight:FontWeight.bold,
               fontSize: 20,
             ),
           ),

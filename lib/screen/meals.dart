@@ -47,7 +47,7 @@ class MealsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
-        backgroundColor:const Color.fromARGB(255, 0, 0, 0), // 
+        backgroundColor:const Color.fromARGB(255, 0, 0, 0), //
       ),
       body: content,
     );
