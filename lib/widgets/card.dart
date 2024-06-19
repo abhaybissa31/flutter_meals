@@ -26,6 +26,7 @@ class CardData extends StatelessWidget {
         ),
         elevation: 5,
         child: InkWell(
+          enableFeedback: true,
           onTap: onSelectCategory,
           splashFactory: InkSplash.splashFactory,
           splashColor: Colors.white54,

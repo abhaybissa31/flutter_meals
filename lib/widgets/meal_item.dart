@@ -17,6 +17,7 @@ class MealItem extends StatelessWidget {
       elevation: 2,
       child: InkWell(
         onTap: () {},
+        enableFeedback: true,
         child: Stack(
           children: [
             FadeInImage(
