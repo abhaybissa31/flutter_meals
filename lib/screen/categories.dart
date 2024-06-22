@@ -13,8 +13,8 @@ class CategoriesScreen extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (ctx) => MealsScreen(
-          title: category.card.imageText,
-          meals: dummyMealModels.where((meal) => meal.categories.contains(category.card.id)).toList(),
+          title: category.imageText,
+          meals: dummyMealModels.where((meal) => meal.categories.contains(category.id)).toList(),
         ),
       ),
     );
@@ -35,9 +35,9 @@ class CategoriesScreen extends StatelessWidget {
     // Create a list of widgets
     List<Widget> categoryCards = availableCategories.map((category) {
       return CardData(
-        imageAddress: category.card.imageAddress,
-        imageText: category.card.imageText,
-        id: category.card.id,
+        imageAddress: category.imageAddress,
+        imageText: category.imageText,
+        id: category.id,
         onSelectCategory: () => _selectCategory(context, category),
       );
     }).toList();
