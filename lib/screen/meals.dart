@@ -4,14 +4,16 @@ import 'package:meals/screen/meal_details.dart';
 import 'package:meals/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.title, required this.meals});
-  final String title;
+  
+  const MealsScreen({super.key, this.title,required this.onToggleFav ,required this.meals});
+  final String? title;
   final List<MealModel> meals;
+  final void Function(MealModel mealModel) onToggleFav;
 
-  void getSelectedMeal(BuildContext context,MealModel mealModel){
-    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> MealDetailScreen(mealModel: mealModel)));
+  void getSelectedMeal(BuildContext context, MealModel mealModel) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) => MealDetailScreen(mealModel: mealModel,onToggleFav: onToggleFav,)));
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,16 +48,22 @@ class MealsScreen extends StatelessWidget {
     if (meals.isNotEmpty) {
       content = ListView.builder(
           itemCount: meals.length,
-          itemBuilder: (ctx, index) => MealItem(mealModel: meals[index],onSelectMeal: (mealModel) => {
-              getSelectedMeal(context, mealModel)
-          },));
-    }
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        backgroundColor:const Color.fromARGB(255, 0, 0, 0), //
-      ),
-      body: content,
-    );
+          itemBuilder: (ctx, index) => MealItem(
+                mealModel: meals[index],
+                onSelectMeal: (mealModel) =>
+                    {getSelectedMeal(context, mealModel)},
+              ));
+          }
+
+          if (title == null) {
+            return content;
+          }
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(title!),
+              backgroundColor: const Color.fromARGB(255, 0, 0, 0), //
+            ),
+            body: content,
+          );
   }
 }
