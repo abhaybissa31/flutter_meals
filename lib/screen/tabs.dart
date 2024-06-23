@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meals/models/mealmodel.dart';
 import 'package:meals/screen/categories.dart';
+import 'package:meals/screen/main_drawer.dart';
 import 'package:meals/screen/meals.dart';
 
 class TabScreen extends StatefulWidget {
@@ -67,15 +69,17 @@ class _TabScreenState extends State<TabScreen> {
       appBar: AppBar(
         title: Text(activePageTitle),
         backgroundColor: const Color.fromARGB(255, 0, 0, 0), //
+        
       ),
+      drawer: const MainDrawer(),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         elevation: 5,
         enableFeedback: true,
         selectedFontSize: 16,
         unselectedFontSize: 12,
-        selectedItemColor: Colors.cyanAccent,
-        unselectedItemColor: Colors.red,
+        unselectedItemColor: Colors.blueGrey,
+        selectedItemColor: Colors.red,
         currentIndex: _selectedPageIndex,
         backgroundColor: Theme.of(context).colorScheme.onSecondary,
         onTap: _selectPage,
@@ -85,7 +89,7 @@ class _TabScreenState extends State<TabScreen> {
             label: "Categories",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star),
+            icon: Icon(CupertinoIcons.heart_circle_fill),
             label: "Favorites",
           )
         ],

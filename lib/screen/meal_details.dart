@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meals/models/mealmodel.dart';
 
@@ -12,7 +13,7 @@ class MealDetailScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(mealModel.title),
-          actions: [IconButton(onPressed: (){onToggleFav(mealModel);}, icon: const Icon(Icons.star_outline_sharp))],
+          actions: [IconButton(onPressed: (){onToggleFav(mealModel);}, icon: const Icon(CupertinoIcons.star))],
           backgroundColor: const Color.fromARGB(255, 0, 0, 0), //
         ),
         body: SingleChildScrollView(
