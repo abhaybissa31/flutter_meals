@@ -6,8 +6,9 @@ import 'package:meals/screen/meals.dart';
 import 'package:meals/widgets/card.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key,required this.onToggleFav});
+  const CategoriesScreen({super.key,required this.onToggleFav, required this.availableMeals});
   final void Function(MealModel mealModel) onToggleFav;
+  final List<MealModel> availableMeals;
 
   void _selectCategory(BuildContext context, CategoryModel category) {
     Navigator.push(
@@ -16,7 +17,7 @@ class CategoriesScreen extends StatelessWidget {
         builder: (ctx) => MealsScreen(
           title: category.imageText,
           onToggleFav: onToggleFav,
-          meals: dummyMealModels
+          meals: availableMeals
               .where((meal) => meal.categories.contains(category.id))
               .toList(),
         ),

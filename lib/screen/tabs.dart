@@ -1,10 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:meals/data/categorydata.dart';
 import 'package:meals/models/mealmodel.dart';
 import 'package:meals/screen/categories.dart';
 import 'package:meals/screen/filter.dart';
 import 'package:meals/screen/main_drawer.dart';
 import 'package:meals/screen/meals.dart';
+
+const kInitialFilter = {
+    Filters.glutenFree: false,
+    Filters.lactoseFree: false,
+    Filters.vegan: false,
+    Filters.vegetarian:false
+  };
 
 class TabScreen extends StatefulWidget {
   const TabScreen({super.key});
@@ -16,16 +24,20 @@ class TabScreen extends StatefulWidget {
 
 class _TabScreenState extends State<TabScreen> {
   
+  Map<Filters, bool> _selectedFilters = kInitialFilter ;
+
+
   void _setScreen(String identifier) async {
     Navigator.of(context).pop();
     if (identifier == 'filter') {
       final result = await Navigator.of(context).push<Map<Filters, bool>>(
         MaterialPageRoute(
-          builder: (ctx) => const FilterScreen(),
+          builder: (ctx) =>  FilterScreen(currentFilters: _selectedFilters,),
         ),
       );
-      print("ssssssssssssssssssss");
-      print(result);
+      setState(() {
+      _selectedFilters = result ?? kInitialFilter;
+      });
     }
   }
 
@@ -67,8 +79,26 @@ class _TabScreenState extends State<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final availableMeals = dummyMealModels.where((MealModel) {
+      if(_selectedFilters[Filters.glutenFree]! && !MealModel.isGlutenFree){
+        return false;
+      }
+      if(_selectedFilters[Filters.lactoseFree]! && !MealModel.isLactoseFree){
+        return false;
+      }
+      if(_selectedFilters[Filters.vegan]! && !MealModel.isVegan){
+        return false;
+      }
+      if(_selectedFilters[Filters.vegetarian]! && !MealModel.isVegetarian){
+        return false;
+      }
+      return true;
+    }).toList();
+
     Widget activePage = CategoriesScreen(
       onToggleFav: _toggleFavMeal,
+      availableMeals: availableMeals,
     );
     var activePageTitle = "Select Your Favorite Cuisine";
 
