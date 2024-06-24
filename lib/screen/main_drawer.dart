@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({super.key});
+  
+  const MainDrawer({super.key,required this.onSelectScreen});
+  final void Function(String identifier) onSelectScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -26,37 +28,47 @@ class MainDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            ListTile(
-              splashColor: Colors.white,
-              dense: true,
-              enableFeedback: true,
-             
-              // iconColor: Colors.white,
-              leading: Icon(Icons.restaurant,size: 26,color: Theme.of(context).colorScheme.inversePrimary,),
-              title: Text("Meals",style:  Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    fontSize: 24
-                    ),
-                    ),
-                    onTap: (){},
+            Material(
+              color: Colors.transparent,
+              child: ListTile(
+                splashColor: Colors.white,
+                // dense: true,
+                enableFeedback: true,
+                // iconColor: Colors.white,
+                leading: Icon(Icons.restaurant,size: 26,color: Theme.of(context).colorScheme.inversePrimary,),
+                title: Text("Meals",style:  Theme.of(context).textTheme.titleSmall!.copyWith(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 24
+                      ),
+                      ),
+                      onTap: (){
+                        onSelectScreen('meals');
+                      },
+              ),
             ),
-             ListTile(
-              splashColor: Colors.white,
-              dense: true,
-              enableFeedback: true,
-             
-              // iconColor: Colors.white,
-              leading: Icon(Icons.filter_list,size: 26,color: Theme.of(context).colorScheme.inversePrimary,),
-              title: Text("Filters",style:  Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    fontSize: 24
-                    ),
-                    ),
-                    onTap: (){},
-            )
+             Material(
+              color: Colors.transparent,
+               child: ListTile(
+                splashColor: Colors.white,
+                // dense: true,
+                enableFeedback: true,
+                // iconColor: Colors.white,
+                leading: Icon(Icons.filter_list,size: 26,color: Theme.of(context).colorScheme.inversePrimary,),
+                title: Text("Filters",style:  Theme.of(context).textTheme.titleSmall!.copyWith(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 24
+                      ),
+                      ),
+                      onTap: (){
+                        onSelectScreen('filter');
+                      },
+                           ),
+             )
           ],
         ),
+      
       ),
+      // shadowColor: Colors.white,
     );
   }
 }

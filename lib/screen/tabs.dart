@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meals/models/mealmodel.dart';
 import 'package:meals/screen/categories.dart';
+import 'package:meals/screen/filter.dart';
 import 'package:meals/screen/main_drawer.dart';
 import 'package:meals/screen/meals.dart';
 
 class TabScreen extends StatefulWidget {
   const TabScreen({super.key});
+  
+
 
   State<TabScreen> createState() {
     return _TabScreenState();
@@ -14,6 +17,14 @@ class TabScreen extends StatefulWidget {
 }
 
 class _TabScreenState extends State<TabScreen> {
+
+    void _setScreen(String identifier){
+      Navigator.of(context).pop();
+    if (identifier=='filter') {
+      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const FilterScreen()));
+    }
+  }
+
   final List<MealModel> _favMeal = [];
 
   void _showInfoMessage(String message) {
@@ -71,7 +82,9 @@ class _TabScreenState extends State<TabScreen> {
         backgroundColor: const Color.fromARGB(255, 0, 0, 0), //
         
       ),
-      drawer: const MainDrawer(),
+      drawer: MainDrawer(onSelectScreen: _setScreen,),
+      drawerScrimColor: Colors.black.withOpacity(0.6),
+      drawerEnableOpenDragGesture: true,
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         elevation: 5,
