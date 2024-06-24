@@ -8,8 +8,6 @@ import 'package:meals/screen/meals.dart';
 
 class TabScreen extends StatefulWidget {
   const TabScreen({super.key});
-  
-
 
   State<TabScreen> createState() {
     return _TabScreenState();
@@ -17,11 +15,17 @@ class TabScreen extends StatefulWidget {
 }
 
 class _TabScreenState extends State<TabScreen> {
-
-    void _setScreen(String identifier){
-      Navigator.of(context).pop();
-    if (identifier=='filter') {
-      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const FilterScreen()));
+  
+  void _setScreen(String identifier) async {
+    Navigator.of(context).pop();
+    if (identifier == 'filter') {
+      final result = await Navigator.of(context).push<Map<Filters, bool>>(
+        MaterialPageRoute(
+          builder: (ctx) => const FilterScreen(),
+        ),
+      );
+      print("ssssssssssssssssssss");
+      print(result);
     }
   }
 
@@ -80,9 +84,10 @@ class _TabScreenState extends State<TabScreen> {
       appBar: AppBar(
         title: Text(activePageTitle),
         backgroundColor: const Color.fromARGB(255, 0, 0, 0), //
-        
       ),
-      drawer: MainDrawer(onSelectScreen: _setScreen,),
+      drawer: MainDrawer(
+        onSelectScreen: _setScreen,
+      ),
       drawerScrimColor: Colors.black.withOpacity(0.6),
       drawerEnableOpenDragGesture: true,
       body: activePage,
