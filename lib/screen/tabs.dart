@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/provider/favprovider.dart';
 import 'package:meals/provider/filters_provider.dart';
-import 'package:meals/provider/meal_provider.dart';
 import 'package:meals/screen/categories.dart';
 import 'package:meals/screen/filter.dart';
 import 'package:meals/screen/main_drawer.dart';
@@ -25,21 +24,17 @@ class TabScreen extends ConsumerStatefulWidget {
 }
 
 class _TabScreenState extends ConsumerState<TabScreen> {
-  
-  Map<Filters, bool> _selectedFilters = kInitialFilter ;
 
 
   void _setScreen(String identifier) async {
     Navigator.of(context).pop();
     if (identifier == 'filter') {
-      final result = await Navigator.of(context).push<Map<Filters, bool>>(
+       Navigator.of(context).push<Map<Filters, bool>>(
         MaterialPageRoute(
-          builder: (ctx) =>  FilterScreen(currentFilters: _selectedFilters,),
+          builder: (ctx) =>  const FilterScreen(),
         ),
       );
-      setState(() {
-      _selectedFilters = result ?? kInitialFilter;
-      });
+
     }
   }
 
@@ -54,22 +49,7 @@ class _TabScreenState extends ConsumerState<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final mealP = ref.watch(mealProvider);
-    final availableMeals = mealP.where((MealModel) {
-      if(_selectedFilters[Filters.glutenFree]! && !MealModel.isGlutenFree){
-        return false;
-      }
-      if(_selectedFilters[Filters.lactoseFree]! && !MealModel.isLactoseFree){
-        return false;
-      }
-      if(_selectedFilters[Filters.vegan]! && !MealModel.isVegan){
-        return false;
-      }
-      if(_selectedFilters[Filters.vegetarian]! && !MealModel.isVegetarian){
-        return false;
-      }
-      return true;
-    }).toList();
+    final availableMeals = ref.watch(filteredMeals);
 
     Widget activePage = CategoriesScreen(
       availableMeals: availableMeals,

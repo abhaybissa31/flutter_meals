@@ -5,32 +5,14 @@ import 'package:meals/provider/filters_provider.dart';
 
 
 
-class FilterScreen extends ConsumerStatefulWidget {
-  const FilterScreen({super.key,required this.currentFilters});
-  final Map<Filters, bool> currentFilters;
+class FilterScreen extends ConsumerWidget{
+  const FilterScreen({super.key});
+  // final Map<Filters, bool> currentFilters;
+
 
   @override
-  ConsumerState<FilterScreen> createState() {
-    return _FilterScreenState();
-  }
-}
-
-class _FilterScreenState extends ConsumerState<FilterScreen> {
-  var _glutenFreeValueSet = false;
-  var _lactoseFreeValueSet = false;
-  var _vegetarianValueSet = false;
-  var _veganValueSet = false;
-
-  @override
-  void initState() {
-    _glutenFreeValueSet = widget.currentFilters[Filters.glutenFree]!;
-    _lactoseFreeValueSet = widget.currentFilters[Filters.lactoseFree]!;
-    _vegetarianValueSet = widget.currentFilters[Filters.vegetarian]!;
-    _veganValueSet = widget.currentFilters[Filters.vegan]!;
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final activeFilters = ref.watch(filterProvide);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 0, 0, 0), // 1
@@ -43,27 +25,15 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
           ),
         ),
       ),
-      body: PopScope(
-        canPop: false,
-        onPopInvoked: (bool didPop) async {
-    if(didPop) return;
-    Navigator.of(context).pop({
-      Filters.glutenFree: _glutenFreeValueSet,
-      Filters.lactoseFree: _lactoseFreeValueSet,
-      Filters.vegetarian: _vegetarianValueSet,
-      Filters.vegan: _veganValueSet,
-    });
-  
-  },
-        child: Column(
+      body: 
+    // Navigator.of(context).pop();
+        Column(
           children: [
             SwitchListTile(
               enableFeedback: true,
-              value: _glutenFreeValueSet,
+              value: activeFilters[Filters.glutenFree]!,
               onChanged: (isChecked){
-              setState(() {
-                    _glutenFreeValueSet = isChecked;
-                  });
+                ref.read(filterProvide.notifier).setFilter(Filters.glutenFree, isChecked);
               },
               title: Text(
                 "Gluten-Free",
@@ -80,11 +50,9 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
           
           SwitchListTile(
             enableFeedback: true,
-              value: _lactoseFreeValueSet,
+              value: activeFilters[Filters.lactoseFree]!,
               onChanged: (isChecked){
-              setState(() {
-                    _lactoseFreeValueSet = isChecked;
-                  });
+                ref.read(filterProvide.notifier).setFilter(Filters.lactoseFree, isChecked);
               },
               title: Text(
                 "Lactose-Free",
@@ -101,11 +69,9 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
           
           SwitchListTile(
             enableFeedback: true,
-              value: _vegetarianValueSet,
+              value: activeFilters[Filters.vegetarian]!,
               onChanged: (isChecked){
-              setState(() {
-                    _vegetarianValueSet = isChecked;
-                  });
+                ref.read(filterProvide.notifier).setFilter(Filters.vegetarian, isChecked);
               },
               title: Text(
                 "Vegetarian",
@@ -122,11 +88,9 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
           
           SwitchListTile(
             enableFeedback: true,
-              value: _veganValueSet,
+              value: activeFilters[Filters.vegan]!,
               onChanged: (isChecked){
-              setState(() {
-                    _veganValueSet = isChecked;
-                  });
+                ref.read(filterProvide.notifier).setFilter(Filters.vegan, isChecked);
               },
               title: Text(
                 "Vegan",
@@ -143,7 +107,6 @@ class _FilterScreenState extends ConsumerState<FilterScreen> {
         
         ],
         ),
-      ),
-    );
+      );
   }
 }

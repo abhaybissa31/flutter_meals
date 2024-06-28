@@ -13,6 +13,8 @@ class MealDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final favroiteMeal = ref.watch(favMealProvider);
+    final isFav = favroiteMeal.contains(mealModel);
     return Scaffold(
         appBar: AppBar(
           title: Text(mealModel.title),
@@ -32,7 +34,7 @@ class MealDetailScreen extends ConsumerWidget {
                     ),
                   );
                 },
-                icon: const Icon(CupertinoIcons.star))
+                icon: Icon(isFav?CupertinoIcons.star:CupertinoIcons.star_circle_fill,color: Colors.purple,))
           ],
           backgroundColor: const Color.fromARGB(255, 0, 0, 0), //
         ),
