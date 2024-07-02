@@ -7,6 +7,7 @@ class AppBarClass extends StatelessWidget{
     return AppBar(
           backgroundColor:const Color.fromARGB(255, 0, 0, 0), // 1
           // elevation: 5, // 2
+          iconTheme: const IconThemeData(color: Colors.purple),
           title: const Text(
             'Select Your Favorite Cuisine',
             style: TextStyle(

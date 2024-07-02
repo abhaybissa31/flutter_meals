@@ -27,6 +27,7 @@ class _TabScreenState extends ConsumerState<TabScreen> {
 
 
   void _setScreen(String identifier) async {
+    // final availableMeals = ref.read(filteredMeals);
     Navigator.of(context).pop();
     if (identifier == 'filter') {
        Navigator.of(context).push<Map<Filters, bool>>(
@@ -34,7 +35,6 @@ class _TabScreenState extends ConsumerState<TabScreen> {
           builder: (ctx) =>  const FilterScreen(),
         ),
       );
-
     }
   }
 
@@ -66,6 +66,7 @@ class _TabScreenState extends ConsumerState<TabScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.purple),
         title: Text(activePageTitle),
         backgroundColor: const Color.fromARGB(255, 0, 0, 0), //
       ),

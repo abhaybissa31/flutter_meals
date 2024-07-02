@@ -15,6 +15,7 @@ class FilterScreen extends ConsumerWidget{
     final activeFilters = ref.watch(filterProvide);
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.purple),
         backgroundColor: const Color.fromARGB(255, 0, 0, 0), // 1
         title: const Text(
           'Your filters',

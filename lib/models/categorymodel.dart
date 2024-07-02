@@ -4,6 +4,4 @@ class CategoryModel {
   final String imageAddress;
   final String imageText;
   final String id;
-
-
 }

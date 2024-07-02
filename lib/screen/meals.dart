@@ -33,12 +33,17 @@ class MealsScreen extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            Text(
-              "Try selecting a different category",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyLarge!
-                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
+            
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Try selecting a different category or changing the filters",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(color: Theme.of(context).colorScheme.onBackground),
+                    textAlign: TextAlign.center,
+              ),
             )
           ],
         ),
@@ -59,6 +64,7 @@ class MealsScreen extends StatelessWidget {
           }
           return Scaffold(
             appBar: AppBar(
+              iconTheme: const IconThemeData(color: Colors.purple),
               title: Text(title!),
               backgroundColor: const Color.fromARGB(255, 0, 0, 0), //
             ),

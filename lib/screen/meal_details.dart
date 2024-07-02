@@ -17,6 +17,7 @@ class MealDetailScreen extends ConsumerWidget {
     final isFav = favroiteMeal.contains(mealModel);
     return Scaffold(
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.purple),
           title: Text(mealModel.title),
           actions: [
             IconButton(
@@ -28,13 +29,13 @@ class MealDetailScreen extends ConsumerWidget {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(wasAdded
-                          ? "Meals added to fav"
-                          : "Meals removed from fav"),
+                          ? "Dish added to Favorites"
+                          : "Dish removed from Favorites",style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
                       duration: const Duration(seconds: 2),
                     ),
                   );
                 },
-                icon: Icon(isFav?CupertinoIcons.star:CupertinoIcons.star_circle_fill,color: Colors.purple,))
+                icon: Icon(isFav?CupertinoIcons.star_fill:CupertinoIcons.star,color: Colors.purple,))
           ],
           backgroundColor: const Color.fromARGB(255, 0, 0, 0), //
         ),
