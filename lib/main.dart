@@ -8,9 +8,7 @@ final theme = ThemeData(
     brightness: Brightness.dark,
     primarySwatch: Colors.blueGrey, // Maintains a teal accent
   ),
-  textTheme: GoogleFonts.latoTextTheme(
-   
-  ),
+  textTheme: GoogleFonts.latoTextTheme(),
   scaffoldBackgroundColor: const Color.fromARGB(18, 0, 0, 0), // Sets background to black
 );
 

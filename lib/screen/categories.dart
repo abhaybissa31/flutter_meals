@@ -5,10 +5,37 @@ import 'package:meals/models/mealmodel.dart';
 import 'package:meals/screen/meals.dart';
 import 'package:meals/widgets/card.dart';
 
-class CategoriesScreen extends StatelessWidget {
-
+class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key, required this.availableMeals});
   final List<MealModel> availableMeals;
+
+  @override
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
+}
+
+// with allows multiple inheritance
+class _CategoriesScreenState extends State<CategoriesScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    // late keywords tells us that the value is not defined yet but will have later when needed
+    _animationController = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 450),
+        lowerBound: 0,
+        upperBound: 1);
+
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   void _selectCategory(BuildContext context, CategoryModel category) {
     Navigator.push(
@@ -16,7 +43,7 @@ class CategoriesScreen extends StatelessWidget {
       MaterialPageRoute(
         builder: (ctx) => MealsScreen(
           title: category.imageText,
-          meals: availableMeals
+          meals: widget.availableMeals
               .where((meal) => meal.categories.contains(category.id))
               .toList(),
         ),
@@ -26,24 +53,26 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // Uncomment if you want an AppBar
-      // appBar: const PreferredSize(
-      //   preferredSize: Size.fromHeight(50),
-      //   child: AppBarClass(),
-      // ),
-      body: GridView.builder(
+    return AnimatedBuilder(
+      animation: _animationController,
+      // Now only the padding widget would be rebuilt 60 times per second
+      builder: (ctx, child) => SlideTransition(
+          position: Tween(
+            begin: const Offset(.2,.8), // offset has first value as x axis and second as y axis
+            end: const Offset(0, 0),
+          ).animate(CurvedAnimation(parent: _animationController, curve: Curves.fastEaseInToSlowEaseOut)),
+          child: child),
+      // here child means that child won't be rebuilt every 60 times per second
+      child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1, // Adjust columns as needed
           childAspectRatio: 2.0,
         ),
-
         itemCount: availableCategories.length,
         itemBuilder: (context, index) {
-        
-         final category = availableCategories[index];
+          final category = availableCategories[index];
           return CardData(
-            // Assuming CardWidget extends StatelessWidget
+            // Assuming CardData extends StatelessWidget
             imageAddress: category.imageAddress,
             imageText: category.imageText,
             id: category.id,
