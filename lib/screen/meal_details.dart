@@ -37,15 +37,15 @@ class MealDetailScreen extends ConsumerWidget {
                 },
                 icon: AnimatedSwitcher(
                 transitionBuilder: (child,animation) {
-                  return RotationTransition(turns: Tween<double>(begin: 0.8,end: 1).animate(animation), child: child,);
+                  return RotationTransition(turns: Tween<double>(begin: 0,end: 1).animate(animation),filterQuality: FilterQuality.high,child: child,);
                 },
-                duration: const Duration(milliseconds: 250),
+                duration: const Duration(milliseconds: 700),
 
                 // We use key to differntiate between the same kind of widget but holding different data. Here we
                 // add isFav as value key because it'll make the key as true and false which are different values
                 child: Icon(isFav?CupertinoIcons.star_fill:CupertinoIcons.star,color: Colors.purple,key: ValueKey(isFav),),
                 ),
-                )
+                ),
           ],
           backgroundColor: const Color.fromARGB(255, 0, 0, 0), //
         ),
