@@ -43,9 +43,9 @@ class FilterScreen extends ConsumerWidget{
                     ),
               ),
               subtitle: Text("Only include gluten-free meals.",style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground),
+                      color: Colors.purple),
             ),
-            activeColor: Theme.of(context).colorScheme.tertiary,
+            activeColor: Colors.purple,
             contentPadding:const EdgeInsets.only(left: 34, right: 22),
         ),
           
@@ -62,9 +62,9 @@ class FilterScreen extends ConsumerWidget{
                     ),
               ),
               subtitle: Text("Only include Lactose-free meals.",style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground),
+                      color: Colors.purple),
             ),
-            activeColor: Theme.of(context).colorScheme.tertiary,
+            activeColor: Colors.purple,
             contentPadding: const EdgeInsets.only(left: 34, right: 22),
         ),
           
@@ -81,9 +81,9 @@ class FilterScreen extends ConsumerWidget{
                     ),
               ),
               subtitle: Text("Only include Vegetarian meals.",style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground),
+                      color: Colors.purple),
             ),
-            activeColor: Theme.of(context).colorScheme.tertiary,
+            activeColor: Colors.purple,
             contentPadding: const EdgeInsets.only(left: 34, right: 22),
         ),
           
@@ -100,9 +100,9 @@ class FilterScreen extends ConsumerWidget{
                     ),
               ),
               subtitle: Text("Only include Vegan meals.",style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground),
+                      color: Colors.purple),
             ),
-            activeColor: Theme.of(context).colorScheme.tertiary,
+            activeColor: Colors.purple,
             contentPadding: const EdgeInsets.only(left: 34, right: 22),
         ),
         

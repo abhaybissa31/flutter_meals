@@ -23,13 +23,17 @@ class MealItem extends StatelessWidget {
         enableFeedback: true,
         child: Stack(
           children: [
-            FadeInImage(
-                placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(mealModel.imageUrl),
-                fit: BoxFit.cover,
-                height: 200,
-                width: double.infinity,
-                ),
+            // hero helps to transition or animation in multiple screen abd tag tells us what to animate kinda like key
+            Hero(
+              tag: mealModel.id,
+              child: FadeInImage(
+                  placeholder: MemoryImage(kTransparentImage),
+                  image: NetworkImage(mealModel.imageUrl),
+                  fit: BoxFit.cover,
+                  height: 200,
+                  width: double.infinity,
+                  ),
+            ),
                 
             Positioned(
                 bottom: 0,

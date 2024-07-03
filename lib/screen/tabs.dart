@@ -82,7 +82,7 @@ class _TabScreenState extends ConsumerState<TabScreen> {
         selectedFontSize: 16,
         unselectedFontSize: 12,
         unselectedItemColor: Colors.blueGrey,
-        selectedItemColor: Colors.red,
+        selectedItemColor: Colors.purple,
         currentIndex: _selectedPageIndex,
         backgroundColor: Theme.of(context).colorScheme.onSecondary,
         onTap: _selectPage,

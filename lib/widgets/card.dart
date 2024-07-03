@@ -44,7 +44,7 @@ class CardData extends StatelessWidget {
                     Expanded(
                       child: Text(
                         imageText,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
                       ),
                     ),
                     const Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),

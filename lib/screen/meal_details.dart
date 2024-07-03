@@ -35,18 +35,31 @@ class MealDetailScreen extends ConsumerWidget {
                     ),
                   );
                 },
-                icon: Icon(isFav?CupertinoIcons.star_fill:CupertinoIcons.star,color: Colors.purple,))
+                icon: AnimatedSwitcher(
+                transitionBuilder: (child,animation) {
+                  return RotationTransition(turns: Tween<double>(begin: 0.8,end: 1).animate(animation), child: child,);
+                },
+                duration: const Duration(milliseconds: 250),
+
+                // We use key to differntiate between the same kind of widget but holding different data. Here we
+                // add isFav as value key because it'll make the key as true and false which are different values
+                child: Icon(isFav?CupertinoIcons.star_fill:CupertinoIcons.star,color: Colors.purple,key: ValueKey(isFav),),
+                ),
+                )
           ],
           backgroundColor: const Color.fromARGB(255, 0, 0, 0), //
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Image.network(
-                mealModel.imageUrl,
-                width: double.infinity,
-                height: 300,
-                fit: BoxFit.cover,
+              Hero(
+                tag: mealModel.id,
+                child: Image.network(
+                  mealModel.imageUrl,
+                  width: double.infinity,
+                  height: 300,
+                  fit: BoxFit.cover,
+                ),
               ),
               const SizedBox(
                 height: 16,
